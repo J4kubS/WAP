@@ -1,5 +1,5 @@
 # Spreadsheet calculator
-Basic spreadsheet calculator in vanilla JavaScript.
+Basic spreadsheet calculator in vanilla JavaScript. Project for [WAP](https://www.fit.vutbr.cz/study/courses/index.php?id=10996) (Internet Applications) course at [FIT BUT](https://www.fit.vutbr.cz/).
 
 ## Features
 For more detailed list of features see [instructions](navod.html) (in Czech). Here is an outline:
