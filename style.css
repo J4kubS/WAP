@@ -1,0 +1,69 @@
+.j4spreadsheet-container *, .j4spreadsheet-container *:before, .j4spreadsheet-container *:after {
+	font-family: Helvetica, Arial, sans-serif;
+	box-sizing: border-box;
+}
+
+/* <div> container */
+.j4spreadsheet-container {
+	position: relative;
+}
+
+/* Spreadsheet's table */
+.j4spreadsheet-spreadsheet {
+	border-collapse: collapse;
+}
+
+/* Shared style for header and value cells */
+.j4spreadsheet-header, .j4spreadsheet-cell {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	vertical-align: middle;
+	border: 1px solid #888;
+
+	min-width: 50px;
+	height: 25px;
+}
+
+/* Header cell (row or column) */
+.j4spreadsheet-header {
+	font-weight: normal;
+	font-size: 15px;
+
+	background-color: #EEE;
+	cursor: default;
+	color: #333;
+}
+
+/* Workaround for FF and IE */
+.j4spreadsheet-cell :not(.j4spreadsheet-cell-editing) {
+	cursor: default;
+}
+
+.j4spreadsheet-cell {
+	padding: 0;
+}
+
+/* <input> containing cell's value */
+.j4spreadsheet-cell-value {
+	background: transparent;
+	outline: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+
+	max-width: 100px;
+	height: 100%;
+}
+
+/* Selected cell */
+.j4spreadsheet-cell-selected {
+	background-color: #B5FFB5;
+}
+
+/* Cell in edit mode */
+.j4spreadsheet-cell-editing {
+	background-color: #77E077;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>J4_Spreadsheet - Návod</title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<h1>Tabulkový kalkulátor - Návod</h1>
+
+		<h2>Použití</h2>
+		Pro vložení prvku do stránky je možné použít jednu ze dvou funkcí,
+		které poskytuje objekt <code>J4_Spreadsheet</code>. Obě funkce přijímají
+		dva parametry - počet řádků a počet sloupců tabulky.
+		<ul>
+			<li>
+				<code>J4_Spreadsheet.create(numRows, numColumns)</code> - vytvoří a inicializuje
+				komponentu včetně jejího ovladače. Vrátí vytvořenou komponentu
+				(DOM element), kterou je možné dle vlastního uvážení vložit do stránky.
+			</li>
+			<li>
+				<code>J4_Spreadsheet.spawn(numRows, numColumns)</code> - komponentu vytvořenou pomocí
+				<code>J4_Spreadsheet.create</code> připojí do rodičovského uzlu posledního HTML tagu
+				<code>&lt;script&gt;</code>, který je v době volání funkce dostupný v DOM stromu.
+				Použití viz <a href="demo.html">demo</a>.
+			</li>
+		</ul>
+		Komponenta spolu se svým ovladačem tvoří samostatnou jednotku. Je tedy možné do stránky vložit
+		libovolné množství komponent.
+
+		<h2>Funkce</h2>
+		Výběr:
+		<ul>
+			<li>Výběr buňky kliknutím levým tlačítkem myši.</li>
+			<li>Výběr více buněk podržením levého tlačítka myši a tažením.</li>
+			<li>Posun vybrané buňky pomocí šipek.</li>
+			<li>Rozšíření, resp. zmenšení, vybrané oblasti kombinací klávesy <em>shift</em> a šipek.</li>
+			<li>Klávesou <em>escape</em> lze výběr zrušit.</li>
+		</ul>
+
+		Editace:
+		<ul>
+			<li>
+				Pokud je vybrána jedna či více buněk, je možné smazat jejich hodnoty (včetně vzorců)
+				pomocí kláves <em>backspace</em> nebo <em>delete</em>.
+			</li>
+			<li>Dvojklikem levým tlačítkem myši nebo klávesou <em>enter</em> se přejde do editačního režimu vybrané buňky.</li>
+			<li>Pokud je vybrána buňka, je možné přepsat její obsah okamžitým psaním (není zapotřebí nejdříve vyvolat editační režim).</li>
+			<li>
+				Pokud je do buňky vložena hodnota začínající znakem <em>=</em>, jedná se o vzorec
+				a mimo editační režim se v buňce zobrazí jeho výsledek.
+			</li>
+			<li>V editačním režimu lze klávesou <em>escape</em> zahodit provedené změny.</li>
+		</ul>
+
+		Vzorce:
+		<ul>
+			<li>Každý vzorec musí začínat znakem <em>=</em>.</li>
+			<li>
+				Ve vzorci je možné odkazovat se na hodnoty jiných buněk zápisem &lt;<em>sloupec</em>&gt;&lt;<em>řádek</em>&gt;
+				(např. <em>A1</em>). Odkazy na sebe sama jsou ignorovány.
+			</li>
+			<li>
+				Je možné použít následující zabudované funkce. Obě funkce mají jeden parametr, a to rozsah buněk.
+				Rozsah buněk se zadává ve formátu &lt;<em>buňka1</em>&gt;:&lt;<em>buňka2</em>&gt;, kde <em>buňka1</em>
+				a <em>buňka2</em> tvoří dva rohy obdélníkové oblasti buněk. Například <em>A1:A10</em>.
+				<ul>
+					<li><em>AVG(rozsah)</em> - vypočte průměrnou hodnotu v rozsahu buněk. Pokud je některá buňka nečíselná, vrací <em>NaN</em>.</li>
+					<li><em>SUM(rozsah)</em> - vypočte sumu v rozsahu buněk. Pokud je některá buňka nečíselná, vrací <em>NaN</em>.</li>
+				</ul>
+			</li>
+			<li>
+				Vzorce jsou po vyčíslení referencí na jiné buňky a volání zabudovaných funcí vyčísleny pomocí
+				funkce <em>eval</em>. Řetězce je ve výrazu potřeba obalit do uvozovek nebo apostrofů. Pokud je
+				řetězec získán odkazem z jiné buňky, uvození se provede automaticky.
+			</li>
+			<li>
+				Výsledky vzorců se automaticky aktualizují tak, jak se mění hodnoty jejich operandů. Mimo kontroly
+				odkazu na sebe sama aplikace neobsahuje kontrolu na kruhové reference ve vzorcích.
+			</li>
+		</ul>
+
+		<h2>Podpora</h2>
+		Aplikace byla testována v následujících prohlížecích v uvedených verzích. Pro použití se doporučuje
+		Google Chrome, případně Mozilla Firefox.
+		<ul>
+			<li>Google Chrome 50.0</li>
+			<li>Mozilla Firefox 45.0</li>
+			<li>Internet Explorer 11</li>
+		</ul>
+
+		<h3>Problémy</h3>
+		Souhrn známých chyb, které se nepovedlo před odevzdáním odstranit:
+		<ul>
+			<li>
+				Internet Explorer - Často nereaguje na volání <code>focus</code>. Po aktivaci editačního režimu může
+				být někdy nutné kliknout do textového pole, aby přijímalo vstup.
+			</li>
+			<li>
+				Internet Explorer - Při posunu vybrané buňky pomocí kláves nefunguje indikace vybrané buňky (nedojde
+				k přidání příslušné třídy). Samotná funkcionalita výběru buňky funguje. Nevztahuje se na rozšíření či
+				zmenšení vybrané oblasti pomocí klávesy <code>shift</code> a šipek.
+			</li>
+		</ul>
+	</body>
+</html>
